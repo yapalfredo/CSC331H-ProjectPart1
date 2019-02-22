@@ -32,16 +32,43 @@ void list<T>::insertFront(T item)
     head = temp;
     temp = NULL;
   }
+  length++;
   delete temp;
 }
 
 template <class T>
 void list<T>::insertAfter(T sItem, T item)
 {
-  
-  if(searchItem(sItem))
+
+  bool result = false;
+  node<T> *temp = head;
+  node<T> *newNode;
+
+  while(temp!=NULL)
   {
-    std::cout << "Found! \n";
+    if (temp->data == sItem)
+    {
+      result = true;
+      newNode = new node<T>;
+     break;
+    }
+    temp = temp->next;
+  }
+
+  if(result)
+  {
+    //std::cout << "Found! \n";
+ 
+    newNode -> data = item;
+    newNode -> next = temp -> next; 
+    temp -> next = newNode;
+    newNode -> prev = temp;
+    
+    if (newNode->next != NULL)
+    {
+      newNode -> next -> prev = newNode;
+    }
+
   }
   else
   {
@@ -51,7 +78,7 @@ void list<T>::insertAfter(T sItem, T item)
 }
 
 template <class T>
-void list<T>::printList()
+void list<T>::printListF()
 {
   node<T> *temp = head;
 
@@ -74,6 +101,20 @@ void list<T>::printList()
   array = NULL;
   delete temp;
   delete array;
+}
+
+template <class T>
+void list<T>::printListB()
+{
+  node<T> *temp = head;
+  while(temp!=NULL)
+  {
+    std::cout << temp->data << " ";
+    temp = temp->next;
+  }
+
+  temp = NULL;
+  delete temp;
 }
 
 template <class T>

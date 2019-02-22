@@ -27,10 +27,12 @@ class list
 
     void insertFront(T);     //insert at the beginning.
     void insertAfter(T,T);   //insert after..
+    void insertBefore(T,T);  //insert before..
     void insertEnd(T);       //insert at the end.
     void deleteItem(T);
     bool searchItem(T);
-    void printList();
+    void printListF();
+    void printListB();
 };
 
 #include "dll.tpp"
