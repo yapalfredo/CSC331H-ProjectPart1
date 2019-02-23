@@ -15,24 +15,31 @@ class list
     int length;
     node<T> *head;
   public:
-    //constructor
+    // constructor
     list();
-    //destructor
+    // destructor
     ~list();
-    //copy constructor
-    //list (const list &)...
+    // copy constructor
+    // list (const list &)...
 
-    //operator overloading
-    //operator=
+    // operator overloading
+    // operator=
 
-    void insertFront(T);     //insert at the beginning.
-    void insertAfter(T,T);   //insert after..
-    void insertBefore(T,T);  //insert before..
-    void insertEnd(T);       //insert at the end.
-    void deleteItem(T);
-    bool searchItem(T);
+    void put(T);     // insert at the beginning.
+    void insertAfter(T,T);   // insert after..
+    void insertBefore(T,T);  // insert before..
+    void insertEnd(T);       // insert at the end.
+    
+    void pull(T);   //used for deleting node
+    
     void printListF();
     void printListB();
+
+    void increaseLength();
+    void decreaseLength();
+    int getLength();
+
+    bool searchItem(T);
 };
 
 #include "dll.tpp"

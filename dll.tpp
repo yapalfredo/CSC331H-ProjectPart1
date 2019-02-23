@@ -1,4 +1,3 @@
-
 template <class T>
 list<T>::list()
 {
@@ -13,33 +12,27 @@ list<T>::~list()
 }
 
 template <class T>
-void list<T>::insertFront(T item)
+void list<T>::put(T item)
 {
-  node<T> *temp = new node<T>;
-  temp -> data = item;
+  node<T> *newNode = new node<T>;
+  newNode -> data = item;
 
-  if (head == NULL)
+  newNode -> next = head;
+  newNode -> prev = NULL;
+
+  if (head != NULL)
   {
-    temp -> prev = NULL;
-    temp -> next = NULL;
-    head = temp;
-    temp = NULL;
+    head -> prev = newNode;
   }
-  else
-  {
-    temp -> prev = NULL;
-    temp -> next = head;
-    head = temp;
-    temp = NULL;
-  }
-  length++;
-  delete temp;
+
+  head = newNode;
+
+  increaseLength();
 }
 
 template <class T>
 void list<T>::insertAfter(T sItem, T item)
 {
-
   bool result = false;
   node<T> *temp = head;
   node<T> *newNode;
@@ -57,8 +50,6 @@ void list<T>::insertAfter(T sItem, T item)
 
   if(result)
   {
-    //std::cout << "Found! \n";
- 
     newNode -> data = item;
     newNode -> next = temp -> next; 
     temp -> next = newNode;
@@ -68,13 +59,58 @@ void list<T>::insertAfter(T sItem, T item)
     {
       newNode -> next -> prev = newNode;
     }
-
+    increaseLength();
   }
   else
   {
     std::cout << "Not found! \n";
   }
 
+  temp = NULL;
+  delete temp;
+}
+
+template <class T>
+void list<T>::pull(T item)
+{
+  if (getLength() >= 1)
+  {
+    bool result = false;
+    node<T> *temp = head;
+    while(temp!=NULL)
+    {
+      if (temp->data == item)
+      {
+        result = true;
+        break;
+      }
+      temp = temp->next;
+    }
+
+    if (result)
+    {
+      if (head->data == temp->data)
+      {
+        head = temp->next;
+      }
+      if (temp->next != NULL)
+      {
+        temp->next->prev = temp->prev;
+      }
+      if (temp->prev != NULL)
+      {
+        temp->prev->next = temp->next;
+      }
+
+      temp = NULL;
+      delete temp;
+      decreaseLength();
+    }
+    else
+    {
+      std::cout << "Cannot find the node to be deleted! \n";
+    }
+  }
 }
 
 template <class T>
@@ -104,7 +140,7 @@ void list<T>::printListF()
 }
 
 template <class T>
-void list<T>::printListB()
+void list<T>::printListB() 
 {
   node<T> *temp = head;
   while(temp!=NULL)
@@ -134,4 +170,25 @@ bool list<T>::searchItem(T item)
 
   temp = NULL;
   delete temp;
+}
+
+template <class T>
+void list<T>::increaseLength()
+{
+  length++;
+}
+
+template <class T>
+void list<T>::decreaseLength()
+{
+  if (length>0)
+  {
+    length--;
+  }
+}
+
+template <class T>
+int list<T>::getLength()
+{
+  return length;
 }
