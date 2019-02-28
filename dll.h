@@ -18,7 +18,7 @@ class list
     // constructor
     list();
     // copy constructor
-    list(const list&);
+    list(const list<T>*&);
     // destructor
     ~list();
 

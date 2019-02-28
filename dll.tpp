@@ -6,9 +6,20 @@ list<T>::list()
 }
 
 template <class T>
-list<T>::list(const list &l2)
+list<T>::list(const list<T> * &left)
 {
- 
+  node<T> *temp = this->head;
+  while(temp!=NULL)
+  {
+    left->prev = temp->prev;
+    left->data = temp->data;
+    left->next = temp->next;
+
+    temp=temp->next;
+    left=left->next;
+  }
+  temp = NULL;
+  delete temp;
 }
 
 template <class T>

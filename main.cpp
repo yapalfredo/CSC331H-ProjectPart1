@@ -38,8 +38,21 @@ int main()
   newNode.insertEnd(9); //delete 
   newNode.printListB();
   std::cout<< std::endl << "\nThe length of the list is: " << newNode.getLength();
+  std::cout<<std::endl;
 
- list<int> newNode2 = newNode;
- std::cout<< std::endl;
- newNode2.printListB();
+  list<int> newNode2 = newNode;  //copy constructor gets called
+  std::cout<< std::endl;
+  std::cout<<"Created a second node. Equated to the first node." <<std::endl;
+  newNode2.printListB();
+
+  std::cout<< std::endl<<std::endl;
+  std::cout<< "inserting 2 and 5 to the second node" << std::endl;
+  newNode2.put(2); newNode2.put(5);
+  newNode2.printListB();
+
+  std::cout<< std::endl << std::endl;
+  std::cout <<"Displaying first node again" << std::endl;
+  newNode.printListB();
+
+
 }
