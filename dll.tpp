@@ -6,9 +6,22 @@ list<T>::list()
 }
 
 template <class T>
+list<T>::list(const list &l2)
+{
+ 
+}
+
+template <class T>
 list<T>::~list()
 {
+    node<T> *temp = head;
 
+    while (temp)
+    {
+        node<T>* next = temp->next;
+        delete temp;
+        temp = next;
+    }
 }
 
 template <class T>
@@ -16,7 +29,6 @@ void list<T>::put(T item)
 {
   node<T> *newNode = new node<T>;
   newNode -> data = item;
-
   newNode -> next = head;
   newNode -> prev = NULL;
 
@@ -65,6 +77,35 @@ void list<T>::insertAfter(T sItem, T item)
   {
     std::cout << "Not found! \n";
   }
+
+  temp = NULL;
+  delete temp;
+}
+
+template <class T>
+void list<T>::insertEnd(T item)
+{
+  node<T> *newNode = new node<T>;
+  node<T> *temp = head;
+  newNode -> data = item;
+  newNode -> next = NULL;
+
+  if (head == NULL)
+  {
+    newNode -> prev = NULL;
+    head = newNode;
+    return;
+  }
+
+  while (temp->next != NULL)
+  {
+    temp = temp -> next;
+  }
+
+  temp -> next = newNode;
+  newNode -> prev = temp;
+
+  increaseLength();
 
   temp = NULL;
   delete temp;

@@ -17,10 +17,10 @@ class list
   public:
     // constructor
     list();
+    // copy constructor
+    list(const list&);
     // destructor
     ~list();
-    // copy constructor
-    // list (const list &)...
 
     // operator overloading
     // operator=
@@ -33,7 +33,7 @@ class list
     void pull(T);   //used for deleting node
     
     void printListF();
-    void printListB();
+    void printListB();    //print in LIFO order
 
     void increaseLength();
     void decreaseLength();
