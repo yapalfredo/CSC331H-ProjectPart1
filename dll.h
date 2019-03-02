@@ -18,12 +18,13 @@ class list
     // constructor
     list();
     // copy constructor
-    list(const list<T>*&);
+    list(const list<T>&);
     // destructor
     ~list();
 
     // operator overloading
     // operator=
+    //void operator=(const list<T>&);
 
     void put(T);     // insert at the beginning.
     void insertAfter(T,T);   // insert after..

@@ -6,21 +6,32 @@ list<T>::list()
 }
 
 template <class T>
-list<T>::list(const list<T> * &left)
+list<T>::list(const list<T>&left)
 {
-  node<T> *temp = this->head;
+  node<T> *temp = left.head;
+  node<T> *newNode;
+
   while(temp!=NULL)
   {
-    left->prev = temp->prev;
-    left->data = temp->data;
-    left->next = temp->next;
+    newNode = new node<T>;
+    newNode->data = temp->data;
+    newNode->next = head;
+    newNode->prev=NULL;
 
-    temp=temp->next;
-    left=left->next;
+    if(head != NULL)
+    {
+      head->prev = newNode;
+    }
+    
+    head = newNode;
+    temp = temp-> next;
   }
-  temp = NULL;
-  delete temp;
+ length = left.length;
+
+ temp = newNode = NULL;
+ delete temp; delete newNode;
 }
+
 
 template <class T>
 list<T>::~list()

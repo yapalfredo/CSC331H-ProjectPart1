@@ -54,5 +54,16 @@ int main()
   std::cout <<"Displaying first node again" << std::endl;
   newNode.printListB();
 
+  std::cout<< std::endl<<std::endl;
+  std::cout<< "deleted 1 from the second node" << std::endl;
+  newNode2.pull(1);
+  newNode2.printListB();
+  std::cout << std::endl;
+  std::cout << newNode2.getLength();
 
+  std::cout<< std::endl<<std::endl;
+  std::cout<< "Displaying first node again" << std::endl;
+  newNode.printListB();
+
+  list<int> newNode3(newNode);
 }
