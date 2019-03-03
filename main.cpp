@@ -59,11 +59,41 @@ int main()
   newNode2.pull(1);
   newNode2.printListB();
   std::cout << std::endl;
-  std::cout << newNode2.getLength();
+  std::cout <<"The length is: "<< newNode2.getLength();
 
   std::cout<< std::endl<<std::endl;
   std::cout<< "Displaying first node again" << std::endl;
   newNode.printListB();
+  
 
-  list<int> newNode3(newNode);
+
+  std::cout<< std::endl<<std::endl;
+  std::cout<< "Inserteed 8,6,7,0 to first node" << std::endl;
+  newNode.put(8);
+  newNode.put(6);
+  newNode.put(7);
+  newNode.put(0);
+  newNode.printListB();
+
+
+  std::cout<< std::endl<<std::endl;
+  list<int> newNode3;
+
+  newNode3.put(1);
+  newNode3.put(3);
+  newNode3.put(5);
+  newNode3.put(7);
+  std::cout<<"Created 3rd Node" << std::endl;
+  newNode3.printListB();
+ 
+
+  std::cout<<std::endl;
+  newNode3 = newNode;
+
+  std::cout<<std::endl;
+  std::cout<< "assigning 3rd Node equal to first node" << std::endl;
+  newNode3.printListB();
+  std::cout<<std::endl;
+  newNode3.getLength();
+
 }

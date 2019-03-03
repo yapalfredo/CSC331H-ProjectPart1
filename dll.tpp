@@ -6,44 +6,52 @@ list<T>::list()
 }
 
 template <class T>
-list<T>::list(const list<T>&left)
+void list<T>::copyOther(const list<T>& other)
 {
-  node<T> *temp = left.head;
-  node<T> *newNode;
-
-  while(temp!=NULL)
+  for (node<T> *src = other.head; src!= nullptr; src = src->next)
   {
-    newNode = new node<T>;
-    newNode->data = temp->data;
-    newNode->next = head;
-    newNode->prev=NULL;
-
-    if(head != NULL)
-    {
-      head->prev = newNode;
-    }
-    
+    node<T> *newNode = new node<T>;
+    newNode -> data = src -> data;
+    newNode -> next = head;
     head = newNode;
-    temp = temp-> next;
   }
- length = left.length;
+  length = other.length;
 
- temp = newNode = NULL;
- delete temp; delete newNode;
 }
 
+template <class T>
+list<T>::list(const list<T>&other)
+{
+  copyOther(other);
+}
+
+template <class T>
+list<T>& list<T>::operator=(const list<T>& other)
+{
+  if (this != &other)
+  {
+    clear();
+    copyOther(other);
+  }
+  return *this;
+}
+
+template <class T>
+void list<T>::clear()
+{
+  while(this->head!=nullptr)
+  {
+    node<T> *_next = this->head->next;
+    delete this->head;
+    this->head = _next;
+  }
+  length = 0;
+}
 
 template <class T>
 list<T>::~list()
 {
-    node<T> *temp = head;
-
-    while (temp)
-    {
-        node<T>* next = temp->next;
-        delete temp;
-        temp = next;
-    }
+  clear();
 }
 
 template <class T>
@@ -205,15 +213,10 @@ void list<T>::printListF()
 template <class T>
 void list<T>::printListB() 
 {
-  node<T> *temp = head;
-  while(temp!=NULL)
+  for (node<T>* node = head; node != nullptr; node = node->next)
   {
-    std::cout << temp->data << " ";
-    temp = temp->next;
+    std::cout << node->data << " ";
   }
-
-  temp = NULL;
-  delete temp;
 }
 
 template <class T>

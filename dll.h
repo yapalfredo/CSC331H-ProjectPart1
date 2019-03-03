@@ -14,6 +14,7 @@ class list
   private:
     int length;
     node<T> *head;
+    void copyOther(const list<T>&);
   public:
     // constructor
     list();
@@ -21,10 +22,11 @@ class list
     list(const list<T>&);
     // destructor
     ~list();
-
     // operator overloading
     // operator=
-    //void operator=(const list<T>&);
+    list<T>& operator=(const list<T>&);
+    void clear(); //used for invoking destructor
+    
 
     void put(T);     // insert at the beginning.
     void insertAfter(T,T);   // insert after..
