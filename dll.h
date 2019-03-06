@@ -34,14 +34,11 @@ public:
 	class Iterator;
 	Iterator begin() const { return Iterator(head); }
 	Iterator end() const {
-
 		node<T> *temp = head;
-
 		while (temp->next != nullptr)
 		{
 			temp = temp->next;
 		}
-
 		return Iterator(temp);
 	}
 
@@ -51,7 +48,7 @@ public:
 
 	void deleteNode(T);   //used for deleting node
 
-	void printListF();
+	void printListF();		//print in reverse order
 	void printListB();    //print in LIFO order
 
 	void increaseLength();
@@ -60,6 +57,5 @@ public:
 
 	bool searchItem(T);
 };
-
 #include "dll.cpp"
 #endif

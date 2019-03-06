@@ -67,6 +67,7 @@ int main()
 	newNode.insertFront(7);
 	newNode.insertFront(0);
 	newNode.printListB();
+	std::cout << std::endl<<"Length of the first node is: "<< newNode.getLength();
 
 	std::cout << std::endl << std::endl;
 	list<int> newNode3;
@@ -87,16 +88,26 @@ int main()
 	std::cout << std::endl;
 	std::cout << "The length of 3rd node is: " << newNode3.getLength() << std::endl << std::endl;
 
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
 
-
-	std::cout << "Traversing 3rd node via iterator " << std::endl;
-	for (auto itr = newNode3.begin(); itr != newNode3.end(); itr++)
+	std::cout << "Traversing 3rd node via iterator head-> last node" << std::endl;
+	auto itr = newNode3.begin();
+	for (int i = 0; i < newNode3.getLength(); i++)
 	{
 		std::cout << *itr << " ";
+		itr++;
 	}
-
 	std::cout << std::endl;
+	std::cout << "Traversing 3rd node via iterator last node -> head" << std::endl;
+	itr = newNode3.end();
+	for (int i = newNode3.getLength(); i > 0; i--)
+	{
+		std::cout << *itr << " ";
+		itr--;
+
+	}
+	std::cout << std::endl << std::endl;
+	
 
 
 

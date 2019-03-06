@@ -284,22 +284,36 @@ private:
 public:
 	Iterator() : iter(nullptr) {}
 
-	Iterator operator++(int)
+	Iterator operator++(T)
 	{
-		if (iter != nullptr)
+		if (iter->next != nullptr)
 		{
 			iter = iter->next;
 		}
 		return iter;
 	}
 
+	Iterator operator--(T)
+	{
+		if (iter->prev != nullptr)
+		{
+			iter = iter->prev;
+		}
+		return iter;
+	}
+
 	T& operator*() const
 	{
-		return iter->next->data;
+		return iter->data;
 	}
 
 	bool operator!=(const Iterator& itr) const
 	{
 		return iter != itr.iter;
+	}
+
+	bool operator==(const Iterator& itr)
+	{
+		return iter == itr.iter;
 	}
 };
